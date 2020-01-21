@@ -1,20 +1,22 @@
-require 'jwt'
+class AuthenticateController < ApplicationController
+    def login 
+   
+        username = params[:user][:username]
+        password = params[:user][:password]
 
-class AuthenticationController < ApplicationController
-    def login
-        user = User.find_by(username: params[:user][:username])
-
-        if (!user)
+        @user = User.find_by username: username
+        if !@user 
             render status: :unauthorized
         else
-            if user.authenticate(params[:user][:password])
-                secret_key = Rails.application.secrets.secret_key_base[0]
-                token = JWT.encode(user, secret_key)
-
-                render json: {token: token, user: user} 
-            else
+            if !@user.authenticate password 
                 render status: :unauthorized
+            else
+                secret = Rails.application.secrets.secret_key_base
+                token = JWT.encode({
+                user_id: @user.id
+                },secret) 
+                render json: {token: token}
             end
-        end 
+        end
     end
-end
+    end
