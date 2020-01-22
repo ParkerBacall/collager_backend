@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :canva_images, only: [:create]
+  resources :images, only: [:index]
+  resources :canvas, only: [:create]
   resources :users, only: [:index, :create]
   post "login", to: "authentication#login"
 end

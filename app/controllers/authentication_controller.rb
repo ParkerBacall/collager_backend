@@ -1,6 +1,7 @@
-class AuthenticateController < ApplicationController
+require 'jwt'
+
+class AuthenticationController < ApplicationController
     def login 
-   
         username = params[:user][:username]
         password = params[:user][:password]
 
@@ -15,8 +16,9 @@ class AuthenticateController < ApplicationController
                 token = JWT.encode({
                 user_id: @user.id
                 },secret) 
-                render json: {token: token}
+                render json: {token: token, user: @user.id}
             end
+         end
         end
     end
-    end
+
