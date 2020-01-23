@@ -1,4 +1,4 @@
 class CanvaImage < ApplicationRecord
-  belongs_to :canvas
-  belongs_to :images
+  belongs_to :canva
+  belongs_to :image
 end

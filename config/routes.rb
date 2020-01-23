@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :canva_images, only: [:create]
+  resources :user_collages
+  resources :canva_images, only: [:index, :create]
   resources :images, only: [:index]
-  resources :canvas, only: [:create]
+  resources :canvas, only: [:show, :create, :destroy]
   resources :users, only: [:index, :create]
   post "login", to: "authentication#login"
 end

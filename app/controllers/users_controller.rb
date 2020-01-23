@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     before_action :authenticate, only: [:index]
 
     def index
-        render json: @user
+        render json: @user, include: :canvas
     end
 
     def create

@@ -1,6 +1,18 @@
 class CanvasController < ApplicationController
+    before_action :authenticate, only: [:create]
+
+    def show
+        @canva = Canva.find(params[:id])
+        render json: @canva, include: :images
+    end
+
     def create
-        @canvas = Canva.create(params[:name])
-        render json: @canvas
+        @canva = Canva.create(name: params[:name], user_id: @user.id)
+        render json: @canva, include: :images
+    end
+
+    def destroy
+        @canva = Canva.find(params[:id])
+        @canva.destroy
     end
 end

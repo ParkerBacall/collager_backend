@@ -16,18 +16,20 @@ ActiveRecord::Schema.define(version: 2020_01_21_225007) do
   enable_extension "plpgsql"
 
   create_table "canva_images", force: :cascade do |t|
-    t.bigint "canvas_id", null: false
-    t.bigint "images_id", null: false
+    t.bigint "canva_id", null: false
+    t.bigint "image_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["canvas_id"], name: "index_canva_images_on_canvas_id"
-    t.index ["images_id"], name: "index_canva_images_on_images_id"
+    t.index ["canva_id"], name: "index_canva_images_on_canva_id"
+    t.index ["image_id"], name: "index_canva_images_on_image_id"
   end
 
   create_table "canvas", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_canvas_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_225007) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "canva_images", "canvas", column: "canvas_id"
-  add_foreign_key "canva_images", "images", column: "images_id"
+  add_foreign_key "canva_images", "canvas"
+  add_foreign_key "canva_images", "images"
+  add_foreign_key "canvas", "users"
 end
