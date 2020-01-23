@@ -3,13 +3,15 @@ class CanvasController < ApplicationController
 
     def show
         @canva = Canva.find(params[:id])
-        render json: @canva, include: :images
+        render json: @canva, include:  {canva_images: {include: :image}}
     end
 
     def create
         @canva = Canva.create(name: params[:name], user_id: @user.id)
         render json: @canva, include: :images
     end
+
+
 
     def destroy
         @canva = Canva.find(params[:id])

@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_01_21_225007) do
   create_table "canva_images", force: :cascade do |t|
     t.bigint "canva_id", null: false
     t.bigint "image_id", null: false
+    t.string "size"
+    t.string "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["canva_id"], name: "index_canva_images_on_canva_id"
