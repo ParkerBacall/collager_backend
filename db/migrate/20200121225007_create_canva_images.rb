@@ -5,6 +5,7 @@ class CreateCanvaImages < ActiveRecord::Migration[6.0]
       t.references :image, null: false, foreign_key: true
       t.string :size
       t.string :position
+      t.string :height
 
       t.timestamps
     end

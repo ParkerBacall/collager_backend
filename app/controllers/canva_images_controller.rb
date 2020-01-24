@@ -10,13 +10,19 @@ class CanvaImagesController < ApplicationController
             canva_id: params[:collage_id], 
             image_id: params[:image_id],
             size: params[:size],
-            position: params[:position])
+            position: params[:position],
+            height: params[:height]
+            )
         render json: {canvaImage: @canvaImage}
     end
 
     def update
         @canvaImage = CanvaImage.find(params[:id])
-        @canvaImage.update(size: params[:size], position: params[:position])
+        @canvaImage.update(
+        size: params[:size], 
+        position: params[:position], 
+        height: params[:height]
+        )
         render json: @canvaImage
     end
 

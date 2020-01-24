@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_225007) do
     t.bigint "image_id", null: false
     t.string "size"
     t.string "position"
+    t.string "height"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["canva_id"], name: "index_canva_images_on_canva_id"
