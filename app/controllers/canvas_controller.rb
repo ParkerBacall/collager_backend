@@ -7,9 +7,8 @@ class CanvasController < ApplicationController
     end
 
     def create
-        byebug
         @canva = Canva.create(name: params[:name], user_id: @user.id)
-        render json: @canva, include: :images
+        render json: @canva
     end
 
 
