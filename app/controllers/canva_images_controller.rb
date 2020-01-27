@@ -7,6 +7,7 @@ class CanvaImagesController < ApplicationController
     
     def create 
         @canvaImage = CanvaImage.create(
+            byebug
             canva_id: params[:collage_id], 
             image_id: params[:image_id],
             size: params[:size],
