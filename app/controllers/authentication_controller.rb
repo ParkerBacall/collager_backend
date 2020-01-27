@@ -12,7 +12,7 @@ class AuthenticationController < ApplicationController
             if !@user.authenticate password 
                 render status: :unauthorized
             else
-                secret = Rails.application.secrets.secret_key_base
+                secret = ENV['SECRET_KEY_BASE']
                 token = JWT.encode({
                 user_id: @user.id
                 },secret) 
