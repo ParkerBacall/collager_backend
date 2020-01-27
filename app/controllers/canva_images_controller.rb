@@ -6,9 +6,6 @@ class CanvaImagesController < ApplicationController
     end
     
     def create 
-
-        byebug
-
         @canvaImage = CanvaImage.create(
             canva_id: params[:collage_id], 
             image_id: params[:image_id],
@@ -16,7 +13,7 @@ class CanvaImagesController < ApplicationController
             position: params[:position],
             height: params[:height]
             )
-        render json: {canvaImage: @canvaImage}
+        render json: @canvaImage
     end
 
     def update
